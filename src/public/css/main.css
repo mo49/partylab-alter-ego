@@ -76,3 +76,25 @@ body {
   top: calc(50% - 8px);
   left: calc(50% - 35px); }
 
+#video {
+  position: absolute;
+  right: 0;
+  bottom: 0; }
+
+#webcam-canvas {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  height: 240px; }
+
+#btn-take-photo {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  bottom: 20px;
+  background-color: #fff;
+  padding: 10px;
+  text-align: center; }
+

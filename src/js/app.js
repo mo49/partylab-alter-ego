@@ -1,6 +1,7 @@
 import Config from './data/config';
 import Detector from './utils/detector';
 import Main from './app/main';
+import Webcam from './app/webcam';
 
 // Styles
 import './../css/app.scss';
@@ -19,6 +20,7 @@ function init() {
   } else {
     const container = document.getElementById('appContainer');
     new Main(container);
+    new Webcam()
   }
 }
 
