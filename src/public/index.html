@@ -10,14 +10,22 @@
       <div id="loading">Loading...</div>
     </section>
     
-    <canvas id="webcam-canvas"></canvas>
-    <video id="video" width="640" height="480" autoplay></video>
+    <div id="clm-video">
+      <video id="webcam-video" width="400" height="300" webkit-playsinline playsinline autoplay muted></video>
+      <canvas id="video-overlay" width="400" height="300"></canvas>
+    </div>
+    <div id="clm-image">
+      <canvas id="webcam-image" width="400" height="300"></canvas>
+      <canvas id="image-overlay" width="400" height="300"></canvas>
+    </div>
+
     <button id="btn-take-photo">写真を撮影する</button>
     
     
     <script src="js/rStats.js"></script>
     <script src="js/rStats.extras.js"></script>
     <script src="js/dat.gui.min.js"></script>
+    <script src="js/clmtrackr.js"></script>
     
   <script type="text/javascript" src="js/app.js"></script><script type="text/javascript" src="js/vendors.app.js"></script><script type="text/javascript" src="js/main.app.js"></script></body>
 </html>

@@ -1,9 +1,13 @@
-export default class Webcam {
+import EventEmitter from 'eventemitter3'
+
+export default class Webcam extends EventEmitter {
     constructor(opts={}) {
-        this.video = document.getElementById("video")
-        this.canvas = document.getElementById("webcam-canvas")
-        this.ctx = this.canvas.getContext('2d')
+        super()
+        this.video = document.getElementById("webcam-video")
+        this.imageCanvas = document.getElementById("webcam-image")
+        this.imageCtx = this.imageCanvas.getContext('2d')
         this.button = document.getElementById("btn-take-photo")
+
         this.init()
         this.initListener()
     }
@@ -15,6 +19,7 @@ export default class Webcam {
         })
         media.then(stream => {
             this.video.srcObject = stream
+            this.emit('start_video')
         })
     }
 
@@ -27,8 +32,9 @@ export default class Webcam {
     take_photo() {
         const width = this.video.offsetWidth;
         const height = this.video.offsetHeight;
-        this.canvas.width = width
-        this.canvas.height = height
-        this.ctx.drawImage(this.video, 0, 0, width, height)
+        this.imageCanvas.width = width
+        this.imageCanvas.height = height
+        this.imageCtx.drawImage(this.video, 0, 0, width, height)
+        this.emit('take_photo', this.imageCanvas)
     }
 }
