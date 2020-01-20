@@ -8,6 +8,10 @@ export default class {
     this.vid_height = this.vid.height
     this.overlay = document.getElementById("overlay")
     this.overlayCC = overlay.getContext("2d")
+    this.webgl = document.getElementById('webgl')
+
+    this.animationButton = document.getElementById("animationButton")
+    this.resetButton = document.getElementById("resetButton")
 
     this.ph = new this.parameterHolder()
     this.gui = new dat.GUI()
@@ -30,7 +34,13 @@ export default class {
     this.setupFaceDeformation = this.setupFaceDeformation.bind(this)
     this.switchDeformedFace = this.switchDeformedFace.bind(this)
     this.drawDeformedFace = this.drawDeformedFace.bind(this)
+    this.animate = this.animate.bind(this)
 
+    this.initListener()
+  }
+
+  initListener() {
+    this.animationButton.addEventListener('click', this.animate)
   }
 
   setupFaceDeformation() {
@@ -40,6 +50,10 @@ export default class {
     this.ctrack.draw(this.overlay);
     this.fd.load(this.vid, this.positions, pModel);
     this.fd.draw(this.positions);
+
+    // show button
+    this.animationButton.setAttribute("class", "nohide")
+    this.resetButton.setAttribute("class", "nohide")
 
     // hide video
     var elem = document.getElementById("container");
@@ -195,5 +209,25 @@ export default class {
     this.draw_face = true;
     this.draw_grid = false;
   }
-  
+
+  animate() {
+    let count = 0
+    setInterval(() => {
+      this.ph.param3 = Math.random()*20
+      let c = count*0.01
+      if(count%10==0){
+        // this.rotation = Math.random() * 0.2 - 0.1
+      }
+      this.rotation = Math.cos(c*6) * 0.2
+      this.scale = Math.abs(Math.cos(c) * 2)+2
+      this.xOffset = Math.cos(c*5) * this.webgl.width/4 + this.webgl.width/4
+      this.yOffset = Math.sin(c*8) * this.webgl.height/4 -80 + this.webgl.height/4
+      // this.xOffset = this.webgl.width/2
+      // this.yOffset = this.webgl.height/2
+      this.drawDeformedFace()
+      count++
+    }, 100);
+    // requestAnimationFrame
+  }
+
 }

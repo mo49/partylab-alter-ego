@@ -6,21 +6,6 @@
   </head>
 
   <body>
-    <!-- <section id="appContainer" class="main">
-      <div id="loading">Loading...</div>
-    </section>
-    
-    <div id="clm-video">
-      <video id="webcam-video" width="400" height="300" webkit-playsinline playsinline autoplay muted></video>
-      <canvas id="video-overlay" width="400" height="300"></canvas>
-    </div>
-    <div id="clm-image">
-      <canvas id="webcam-image" width="400" height="300"></canvas>
-      <canvas id="image-overlay" width="400" height="300"></canvas>
-    </div>
-
-    <button id="btn-take-photo">写真を撮影する</button> -->
-
     <div id="content">
     	<div id="container" class="nohide">
 				<video id="videoel" width="370" height="288" preload="auto" playsinline autoplay></video>
@@ -32,7 +17,9 @@
 			</div>
 			<br/>
 			<div id="buttons">
-				<input class="btn" type="button" value="wait, loading video" id="startbutton"></input>
+        <input class="btn" type="button" value="wait, loading video" id="trackingButton"></input>
+				<input class="btn hide" type="button" value="START" id="animationButton"></input>
+				<input class="btn hide" type="button" value="RESET" id="resetButton"></input>
 			</div>
 			<p id="score"></p>
 			<p id='gUMMessage'></p>
@@ -41,12 +28,12 @@
     <% if (htmlWebpackPlugin.options.env === 'dev') { %>
     <script src="js/rStats.js"></script>
     <script src="js/rStats.extras.js"></script>
+    <script src="js/libs/dat.gui.min.js"></script>
+    <% } %>
     <script src="js/clmtrackr.js"></script>
     <script src="js/face_deformer.js"></script>
-    <script src="js/libs/dat.gui.min.js"></script>
     <script src="js/libs/webgl-utils.js"></script>
     <script src="js/libs/utils.js"></script>
     <script src="js/models/model_pca_20_svm.js"></script>
-    <% } %>
   </body>
 </html>
