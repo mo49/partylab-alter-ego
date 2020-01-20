@@ -14,8 +14,8 @@ import Geometry from './helpers/geometry';
 import Stats from './helpers/stats';
 
 // Model
-import Texture from './model/texture';
-import Model from './model/model';
+import Texture from './models/texture';
+import Model from './models/model';
 
 // Managers
 import Interaction from './managers/interaction';
@@ -125,5 +125,9 @@ export default class Main {
 
     // RAF
     requestAnimationFrame(this.render.bind(this)); // Bind the main class instead of window object
+  }
+
+  addScene(obj) {
+    this.scene.add(obj);
   }
 }

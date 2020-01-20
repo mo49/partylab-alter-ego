@@ -3,6 +3,8 @@ import Detector from './utils/detector';
 import Main from './app/main';
 import Webcam from './app/webcam';
 import FaceTracker from './app/facetracker';
+import Face from './app/face';
+import DetectFace from './app/detectface';
 
 // Styles
 import './../css/app.scss';
@@ -19,22 +21,27 @@ function init() {
   if(!Detector.webgl) {
     Detector.addGetWebGLMessage();
   } else {
-    const container = document.getElementById('appContainer');
-    // new Main(container);
-    
-    const facetracker = new FaceTracker()
-    const webcam = new Webcam()
+    new DetectFace()
 
-    webcam.on('start_video', () => {
-      facetracker.startVideo()
-    })
+    // const container = document.getElementById('appContainer');
 
-    webcam.on('take_photo', (canvas) => {
-      console.log('take photo')
-      facetracker.startImage()
-    })
+    // const facetracker = new FaceTracker()
+    // const webcam = new Webcam()
 
+    // webcam.on('start_video', () => {
+    //   facetracker.startVideo()
+    // })
+
+    // webcam.on('take_photo', (canvas) => {
+    //   console.log('take photo')
+    //   facetracker.startImage()
+
+    //   facetracker.on('tracked', () => {
+    //     console.log('tracked')
+
+    //     const main = new Main(container);
+    //   })
+    // })
   }
 }
-
 init();
