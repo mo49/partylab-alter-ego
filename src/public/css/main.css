@@ -110,6 +110,16 @@ body {
 .nohide {
   display: block; }
 
+#buttons {
+  position: absolute;
+  left: 0;
+  bottom: 0; }
+
+#emotion {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
 #loading {
   position: absolute;
   top: calc(50% - 8px);

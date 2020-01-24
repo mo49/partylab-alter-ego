@@ -20,27 +20,23 @@ export default class {
     this.xOffset = -10
     this.yOffset = 0
 
+    this.count = 0
+
     this.presets = {
       "default" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "oi mate" : [0, 0, 13, 1.2, 0, -15, 0, 1, 8, -5, 0, 0, 0, 0, 0, 0, 0, 11.6, 0, -7],
       "unhappy" : [0, 0, 0, 0, 0, 0, 0, 0, 0, -13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "disgust" : [-4, -14, 8, 2, 3, -5.6, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, 0, -5],
+      "oi mate" : [0, 0, 13, 1.2, 0, -15, 0, 1, 8, -5, 0, 0, 0, 0, 0, 0, 0, 11.6, 0, -7],
       "greek" : [0, 0, 0, 1.6, 0, -6, 0, 0, 0, -13, 0, 4.7, 1, 0, 11, -1, 8, 8, 0, 0],
       "cheery" : [0, 0, 0, 0, 10.7, 0, 16.8, 0, 0, -5, 0, -4, 13, 0, 0, 0, 0, 0, 0, 0],
       "luke" : [0, 0, -1.7, -8.7, -8, -4.8, 12.5, -1, 14.6, -11, 0, -2, -13, 0, 0, 0, 0, 7, 0, -3],
       "chum" : [0, 0, 13, 1.2, 0, 2.5, 0, 1, 16.8, -5, 0, 0, 0, 0, 0, 0, 0, 11.6, 0, -7],
-      "disgust" : [-4, -14, 8, 2, 3, -5.6, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, 0, -5],
     }
 
     this.setupFaceDeformation = this.setupFaceDeformation.bind(this)
     this.switchDeformedFace = this.switchDeformedFace.bind(this)
     this.drawDeformedFace = this.drawDeformedFace.bind(this)
-    this.animate = this.animate.bind(this)
-
-    this.initListener()
-  }
-
-  initListener() {
-    this.animationButton.addEventListener('click', this.animate)
+    this.loop = this.loop.bind(this)
   }
 
   setupFaceDeformation() {
@@ -57,7 +53,8 @@ export default class {
 
     // hide video
     var elem = document.getElementById("container");
-    elem.setAttribute("class", "hide");
+    // elem.setAttribute("class", "hide");
+    
     // show facial deformation element
     elem = document.getElementById("webglcontainer");
     elem.setAttribute("class", "nohide");
@@ -210,24 +207,18 @@ export default class {
     this.draw_grid = false;
   }
 
-  animate() {
-    let count = 0
-    setInterval(() => {
+  loop() {
+    if(this.count%5==0){
       this.ph.param3 = Math.random()*20
-      let c = count*0.01
-      if(count%10==0){
-        // this.rotation = Math.random() * 0.2 - 0.1
-      }
-      this.rotation = Math.cos(c*6) * 0.2
-      this.scale = Math.abs(Math.cos(c) * 2)+2
-      this.xOffset = Math.cos(c*5) * this.webgl.width/4 + this.webgl.width/4
-      this.yOffset = Math.sin(c*8) * this.webgl.height/4 -80 + this.webgl.height/4
-      // this.xOffset = this.webgl.width/2
-      // this.yOffset = this.webgl.height/2
-      this.drawDeformedFace()
-      count++
-    }, 100);
-    // requestAnimationFrame
+    }
+    let c = this.count*0.005
+    this.rotation = Math.cos(c*6) * 0.2
+    this.scale = Math.abs(Math.cos(c) * 2)+2
+    this.xOffset = Math.cos(c*5) * this.webgl.width/4 + this.webgl.width/4
+    this.yOffset = Math.sin(c*8) * this.webgl.height/4 -150 + this.webgl.height/4
+    this.drawDeformedFace()
+
+    this.count++
   }
 
 }

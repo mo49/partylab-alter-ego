@@ -1,4 +1,6 @@
 import FaceDeformationGUI from './facedeformationgui'
+import emotionModel from './emotionmodel'
+import EmotionClassifier from './emotion_classifier'
 
 export default class {
   constructor(opts = {}) {
@@ -9,6 +11,9 @@ export default class {
     this.overlayCC = overlay.getContext("2d")
     this.trackingButton = document.getElementById("trackingButton")
     this.webgl = document.getElementById('webgl')
+    this.emotion = document.getElementById("emotion")
+    this.animationButton = document.getElementById("animationButton")
+    this.resetButton = document.getElementById("resetButton")
 
     navigator.getUserMedia =
       navigator.getUserMedia ||
@@ -21,16 +26,13 @@ export default class {
     this.positions
     this.ctrack = new clm.tracker()
     this.fd = new faceDeformer()
-    this.faceDeformationGUI = new FaceDeformationGUI({
-      ctrack: this.ctrack,
-      fd: this.fd,
-    })
 
     this.gumSuccess = this.gumSuccess.bind(this)
     this.gumFail = this.gumFail.bind(this)
     this.enablestart = this.enablestart.bind(this)
     this.startVideo = this.startVideo.bind(this)
     this.drawLoop = this.drawLoop.bind(this)
+    this.startAnimation = this.startAnimation.bind(this)
 
     this.init()
   }
@@ -56,9 +58,19 @@ export default class {
     this.trackingStarted = false
 
     this.webgl.width = window.innerWidth
-    this.webgl.height = window.innerHeight - 100
+    this.webgl.height = window.innerHeight - 150
 
     this.trackingButton.addEventListener("click", this.startVideo, false);
+    this.animationButton.addEventListener('click', this.startAnimation, false)
+
+    this.setEmotion()
+
+  }
+
+  setEmotion() {
+    this.ec = new EmotionClassifier()
+    this.ec.init(emotionModel)
+    this.emotionData = this.ec.getBlank()
   }
 
   enablestart() {
@@ -145,6 +157,10 @@ export default class {
     this.drawLoop();
   }
 
+  startAnimation() {
+    this.canAnimate = true
+  }
+
   drawLoop() {
     // track in video
     this.positions = this.ctrack.getCurrentPosition();
@@ -159,16 +175,32 @@ export default class {
     const scoreel = document.getElementById("score");
     scoreel.innerHTML = "正面を向いてください";
 
+    // emotion
+    const parameters = this.ctrack.getCurrentParameters()
+    this.er = this.ec.meanPredict(parameters)
+    for (let index = 0; index < this.er.length; index++) {
+      this.emotion.children[index].textContent = `${this.er[index].emotion}: ${Math.round(this.er[index].value*100)/100}`
+    }
+
     let pn = this.ctrack.getConvergence();
     if (pn < 0.5) {
-      requestAnimFrame(this.faceDeformationGUI.setupFaceDeformation);
-      scoreel.innerHTML = "";
-      if (this.vid.tagName == "VIDEO") {
-        this.vid.pause();
+      if(!this.isSetup){
+        this.faceDeformationGUI = new FaceDeformationGUI({
+          ctrack: this.ctrack,
+          fd: this.fd,
+        })
+        this.faceDeformationGUI.setupFaceDeformation()
+        scoreel.innerHTML = "";
+        // if (this.vid.tagName == "VIDEO") {
+        //   this.vid.pause();
+        // }
+        this.isSetup = true
       }
-    } else {
-      requestAnimFrame(this.drawLoop);
     }
+    if(this.canAnimate){
+      this.faceDeformationGUI.loop()
+    }
+    requestAnimFrame(this.drawLoop);
   }
 
 }
