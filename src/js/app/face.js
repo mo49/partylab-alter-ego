@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import FaceDeformationGUI from './facedeformationgui'
 import emotionModel from './emotionmodel'
 import EmotionClassifier from './emotion_classifier'
@@ -12,6 +13,7 @@ export default class {
     this.trackingButton = document.getElementById("trackingButton")
     this.webgl = document.getElementById('webgl')
     this.emotion = document.getElementById("emotion")
+    this.currentEmotion = document.getElementById("current-emotion")
     this.animationButton = document.getElementById("animationButton")
     this.resetButton = document.getElementById("resetButton")
 
@@ -178,8 +180,14 @@ export default class {
     // emotion
     const parameters = this.ctrack.getCurrentParameters()
     this.er = this.ec.meanPredict(parameters)
+    this.ers = []
     for (let index = 0; index < this.er.length; index++) {
       this.emotion.children[index].textContent = `${this.er[index].emotion}: ${Math.round(this.er[index].value*100)/100}`
+      this.ers.push(this.er[index])
+    }
+    const maxEmo = _.maxBy(this.ers, er => er.value)
+    if(maxEmo){
+      this.currentEmotion.textContent = `感情：${maxEmo.emotion}`
     }
 
     let pn = this.ctrack.getConvergence();

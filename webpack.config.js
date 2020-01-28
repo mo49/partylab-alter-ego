@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 // Paths
 const entry = './src/js/app.js';
@@ -146,7 +147,8 @@ module.exports = env => {
       new MiniCssExtractPlugin({
         filename: '../css/[name].css',
         chunkFilename: '../css/[id].css'
-      })
+      }),
+      new LodashModuleReplacementPlugin,
     ),
 
     optimization: {
