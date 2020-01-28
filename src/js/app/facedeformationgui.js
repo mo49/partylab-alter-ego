@@ -22,15 +22,16 @@ export default class {
 
     this.count = 0
 
+    this.emotion = "default"
     this.presets = {
       "default" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "unhappy" : [0, 0, 0, 0, 0, 0, 0, 0, 0, -13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "disgust" : [-4, -14, 8, 2, 3, -5.6, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, 0, -5],
-      "oi mate" : [0, 0, 13, 1.2, 0, -15, 0, 1, 8, -5, 0, 0, 0, 0, 0, 0, 0, 11.6, 0, -7],
-      "greek" : [0, 0, 0, 1.6, 0, -6, 0, 0, 0, -13, 0, 4.7, 1, 0, 11, -1, 8, 8, 0, 0],
-      "cheery" : [0, 0, 0, 0, 10.7, 0, 16.8, 0, 0, -5, 0, -4, 13, 0, 0, 0, 0, 0, 0, 0],
-      "luke" : [0, 0, -1.7, -8.7, -8, -4.8, 12.5, -1, 14.6, -11, 0, -2, -13, 0, 0, 0, 0, 7, 0, -3],
-      "chum" : [0, 0, 13, 1.2, 0, 2.5, 0, 1, 16.8, -5, 0, 0, 0, 0, 0, 0, 0, 11.6, 0, -7],
+      "angry" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "disgusted" : [-4, -14, 8, 2, 3, -5.6, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, 0, -5],
+      "fear" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "sad" : [0, 0, 0, 0, 0, 0, 0, 0, 0, -13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "surprised" : [0, 0, 0, 5, 0, 0, 0, 0, -10, 10, 0, 0, 0, 0, 0, 0, 0, 5, 0, -5],
+      "happy" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "calm" : [0, 0, 0, 0, 0, 0, 0, 0, 0, -10, -10, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     }
 
     this.setupFaceDeformation = this.setupFaceDeformation.bind(this)
@@ -205,6 +206,28 @@ export default class {
     this.presets = 0;
     this.draw_face = true;
     this.draw_grid = false;
+  }
+
+  changeEmotion(emotion) {
+    if(this.emotion === this.reverseEmotion(emotion)) return
+    this.emotion = this.reverseEmotion(emotion)
+    console.log('反対の感情', this.emotion)
+    this.ph.presets = this.presets[this.emotion].join()
+    this.switchDeformedFace()
+  }
+
+  reverseEmotion(emotion) {
+    let emo
+    switch (emotion) {
+      case 'default': emo = 'surprised'; break;
+      case 'surprised': emo = 'default'; break;
+      case 'happy': emo = 'sad'; break;
+      case 'sad': emo = 'happy'; break;
+      case 'angry': emo = 'calm'; break;
+      case 'disgusted': emo = 'calm'; break;
+      case 'fear': emo = 'calm'; break;
+    }
+    return emo
   }
 
   loop() {

@@ -186,8 +186,14 @@ export default class {
       this.ers.push(this.er[index])
     }
     const maxEmo = _.maxBy(this.ers, er => er.value)
-    if(maxEmo){
-      this.currentEmotion.textContent = `感情：${maxEmo.emotion}`
+    if(maxEmo && this.faceDeformationGUI){
+      if(maxEmo.value > 0.3){
+        this.faceDeformationGUI.changeEmotion(maxEmo.emotion)
+        this.currentEmotion.textContent = `感情：${maxEmo.emotion}`
+      } else {
+        this.faceDeformationGUI.changeEmotion('default')
+        this.currentEmotion.textContent = `感情：default`
+      }
     }
 
     let pn = this.ctrack.getConvergence();
