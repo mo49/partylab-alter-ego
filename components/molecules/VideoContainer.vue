@@ -11,7 +11,7 @@
   position : relative;
   width : 370px;
   /*margin : 0px auto;*/
-  margin: 0 auto;
+  margin: 100px auto 0;
 }
 #videoel {
   -o-transform : scaleX(-1);

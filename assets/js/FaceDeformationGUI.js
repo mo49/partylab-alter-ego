@@ -9,6 +9,7 @@ export default class FaceDeformationGUI {
     this.overlay = document.getElementById("overlay")
     this.overlayCC = overlay.getContext("2d")
     this.webgl = document.getElementById('webgl')
+    this.reverseEmotionBg = document.getElementById('reverse-emotion')
 
     this.animationButton = document.getElementById("animationButton")
     this.resetButton = document.getElementById("resetButton")
@@ -17,19 +18,21 @@ export default class FaceDeformationGUI {
     this.gui = new dat.GUI()
     this.rotation = 0
     this.scale = 3
-    this.xOffset = this.webgl.width / 2 - 200
-    this.yOffset = this.webgl.height / 2 - 200
+    this.faceHalfWidth = 180
+    this.faceHalfHeight = 200
+    this.xOffset = this.webgl.width / 2 - this.faceHalfWidth
+    this.yOffset = this.webgl.height / 2 - this.faceHalfHeight
 
     this.count = 0
 
     this.emotion = "default"
     this.presets = {
       "default" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "angry" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "angry" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       "disgusted" : [-4, -14, 8, 2, 3, -5.6, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, 0, -5],
       "fear" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "sad" : [0, 0, 0, 0, 0, 0, 0, 0, 0, -13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "surprised" : [0, 0, 0, 5, 0, 0, 0, 0, -10, 10, 0, 0, 0, 0, 0, 0, 0, 5, 0, -5],
+      "sad" : [0, 0, 0, 0, 0, 0, 0, 0, 20, -20, -5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "surprised" : [0, 0, -20, 5, 0, 0, 0, 0, -5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, -5],
       "happy" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       "calm" : [0, 0, 0, 0, 0, 0, 0, 0, 0, -10, -10, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     }
@@ -211,7 +214,8 @@ export default class FaceDeformationGUI {
   changeEmotion(emotion) {
     if(this.emotion === this.reverseEmotion(emotion)) return
     this.emotion = this.reverseEmotion(emotion)
-    console.log('反対の感情', this.emotion)
+    this.reverseEmotionBg.textContent = this.emotion
+    // console.log('反対の感情', this.emotion)
     this.ph.presets = this.presets[this.emotion].join()
     this.switchDeformedFace()
   }
@@ -232,13 +236,19 @@ export default class FaceDeformationGUI {
 
   loop() {
     if(this.count%5==0){
-      this.ph.param3 = Math.random()*20
+      this.ph.param3 = this.emotion === 'surprised' ? -Math.abs(Math.random()*20) : Math.random()*20
+    }
+    if(this.count%100==0){
+      this.ph.param1 = Math.random()*20-10
+      this.ph.param2 = Math.random()*40-20
     }
     let c = this.count*0.005
-    this.rotation = Math.cos(c*6) * 0.2
+    this.countX = c*2
+    this.countY = c*4
+    this.rotation = Math.cos(c*5) * 0.2
     this.scale = Math.abs(Math.cos(c) * 2)+2
-    this.xOffset = Math.cos(c*5) * this.webgl.width/4 + this.webgl.width/4
-    this.yOffset = Math.sin(c*8) * this.webgl.height/4 -100 + this.webgl.height/4
+    this.xOffset = Math.cos(this.countX) * this.webgl.width/3 + (this.webgl.width/2 - this.faceHalfWidth)
+    this.yOffset = Math.sin(this.countY) * this.webgl.height/3 + (this.webgl.height/2 - this.faceHalfHeight)
     this.drawDeformedFace()
 
     this.count++

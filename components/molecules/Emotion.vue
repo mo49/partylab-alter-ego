@@ -12,8 +12,15 @@
 
 <style lang="scss" scoped>
 #emotion{
-  position: absolute;
-  top: 100px;
-  left: 10px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: index($z, modal);
+}
+
+#current-emotion{
+  color: #f00;
+  margin-top: 10px;
+  font-size: 2rem;
 }
 </style>

@@ -59,7 +59,7 @@ export default class Face {
     this.trackingStarted = false
 
     this.webgl.width = window.innerWidth
-    this.webgl.height = window.innerHeight - 150
+    this.webgl.height = window.innerHeight
 
     this.trackingButton.addEventListener("click", this.startVideo, false);
     this.animationButton.addEventListener('click', this.startAnimation, false)
@@ -75,7 +75,7 @@ export default class Face {
   }
 
   enablestart() {
-    this.trackingButton.value = "顔を切り抜く";
+    this.trackingButton.value = "Tracking";
     this.trackingButton.disabled = null;
   }
 
@@ -109,7 +109,7 @@ export default class Face {
       this.ctrack.start(this.vid);
       this.drawLoop();
     };
-    this.trackingButton.value = "顔を切り抜く";
+    this.trackingButton.value = "Tracking";
     this.trackingButton.disabled = null;
   }
 
@@ -186,12 +186,12 @@ export default class Face {
     }
     const maxEmo = _.maxBy(this.ers, er => er.value)
     if(maxEmo && this.faceDeformationGUI){
-      if(maxEmo.value > 0.3){
+      if(maxEmo.value > 0.5){
         this.faceDeformationGUI.changeEmotion(maxEmo.emotion)
-        this.currentEmotion.textContent = `Emotion: ${maxEmo.emotion}`
+        this.currentEmotion.textContent = `emotion: ${maxEmo.emotion}`
       } else {
         this.faceDeformationGUI.changeEmotion('default')
-        this.currentEmotion.textContent = `Emotion: default`
+        this.currentEmotion.textContent = `emotion: default`
       }
     }
 

@@ -12,7 +12,8 @@
 <template>
   <div data-page="top" class="container">
     <div class="inner">
-      <p>{{ $t('title') }}</p>
+      <!-- <p>{{ $t('title') }}</p> -->
+      <reverse-emotion />
       <video-container />
       <webgl-container />
       <buttons />
@@ -26,6 +27,7 @@
 <script>
 import gUMMessage from '~/components/atoms/gUMMessage'
 import Score from '~/components/atoms/Score'
+import ReverseEmotion from '~/components/atoms/ReverseEmotion'
 import Buttons from '~/components/molecules/Buttons'
 import Emotion from '~/components/molecules/Emotion'
 import VideoContainer from '~/components/molecules/VideoContainer'
@@ -37,6 +39,7 @@ export default {
   components: {
     gUMMessage,
     Score,
+    ReverseEmotion,
     Buttons,
     Emotion,
     VideoContainer,

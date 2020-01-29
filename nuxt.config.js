@@ -4,7 +4,7 @@ const { resolve } = require('path');
 
 const baseName = 'baseName'
 const baseDesc = 'baseDesc'
-const subDir = 'brandname'
+const subDir = ''
 const baseUrl = `https://ja.nuxtjs.org/${subDir}`
 const baseOgp = '/image/ogp'
 const appId = ''
