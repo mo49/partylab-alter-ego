@@ -1,0 +1,9 @@
+@mixin image($url, $scale:1){
+    $scale: 1 / $scale;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: resolve($url);
+    background-size: size($url, $scale);
+    width: width($url, $scale);
+    height: height($url, $scale);
+}

@@ -1,0 +1,12 @@
+@mixin border-text ($size: 3px, $color: #000, $blur: 0px) {
+    $short_size: $size * (1 / 1.4142);
+    text-shadow:
+    (-$short_size) (-$short_size) $blur $color,
+    (0px) (-$size) $blur $color,
+    ($short_size) (-$short_size) $blur $color,
+    ($size) (0px) $blur $color,
+    ($short_size) ($short_size) $blur $color,
+    (0px) ($size) $blur $color,
+    (-$short_size) ($short_size) $blur $color,
+    (-$size) (0px) $blur $color;
+}

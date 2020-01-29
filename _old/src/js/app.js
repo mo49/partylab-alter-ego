@@ -4,7 +4,7 @@ import Main from './app/main';
 import Face from './app/face';
 
 // Styles
-import './../css/app.scss';
+import '../css/app.scss';
 
 // Check environment and set the Config helper
 if(__ENV__ === 'dev') {

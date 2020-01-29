@@ -1,0 +1,19 @@
+.gallery{
+    li[class*='work--']{
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        margin: 5px;
+        @include hover();
+    }
+    @for $i from 1 through 10 {
+        .work--#{$i}{
+            @if $i%2 == 0{
+                background-color: #333;
+            }
+            @else{
+                background-color: #ddd;
+            }
+        }
+    }
+}

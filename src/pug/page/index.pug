@@ -1,0 +1,17 @@
+extends /layout/_default-layout
+
+prepend config-block
+  - page_name = 'TOP'
+
+append stylesheet-block
+  link(rel="stylesheet", href="./css/style.css")
+
+append javascript-block
+  script(src="./js/script.js")
+
+block content-block
+  include ../partial/_header
+  include ../partial/_fv
+  include ../partial/_gallery
+  include ../partial/_footer
+  

@@ -1,0 +1,12 @@
+.header{
+    width: 100%;
+    padding: 5px;
+    background-color: $bg-color;
+}
+
+.header__logo{
+    @include image('logo.png', 0.5);
+    @include sp-layout{
+        @include image('logo.png', 0.25);
+    }
+}

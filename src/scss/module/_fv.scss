@@ -1,0 +1,13 @@
+.fv__title{
+    h1{
+        line-height: 2;
+        @include pc-layout{
+            @include border-text(6px, #fff, 4px);
+            font-size: 36px;
+        }
+        @include sp-layout{
+            @include border-text(3px, #fff, 1px);
+            font-size: 21px;
+        }
+    }
+}

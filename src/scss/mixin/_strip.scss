@@ -1,0 +1,5 @@
+// http://www.nxworld.net/tips/css-gradient-pattern.html
+
+@mixin strip($size: 10, $c1:rgba(255,255,255,1.0), $c2:$main-color, $deg:-45deg) {
+    background-image: repeating-linear-gradient($deg, $c1, $c1 $size/2 + px, $c2 0, $c2 $size + px);
+}
