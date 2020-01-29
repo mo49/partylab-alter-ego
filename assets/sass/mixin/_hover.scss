@@ -1,0 +1,8 @@
+@mixin hover($opacity:0.8){
+  @include pc-layout{
+    cursor: pointer;
+    &:hover{
+      opacity: $opacity;
+    }
+  }
+}

@@ -1,121 +1,39 @@
-## 動作確認
-macOS Mojave 10.14.6
+# nuxt-starter
 
-## 環境構築
+> My wonderful Nuxt.js project
 
-- node.js
-  - version12以上。随時`.node-version`を確認。
+## Build Setup
 
-- node_modules
+``` bash
+# install dependencies
+$ yarn install
 
-```
-yarn
-```
-もしくは
-```
-npm install
-```
+# serve with hot reload at localhost:3000
+$ yarn dev
 
-## 開発手順
+# build for production and launch server
+$ yarn build
+$ yarn start
 
-- `npm run start` / `yarn start`
-  - ローカル開発環境ブラウザの立ち上げ、自動でビルド・リロードを行います。基本的にはこちらのコマンドだけで開発ができます。
-
-- `npm run build` / `yarn build`
-  - productionモードの最適化された状態でビルドします。`webpack-dev-server`コマンドでは開発用サーバー上でファイルを展開しているだけなので、実ファイルを取得する場合はビルドする必要があります。
-  - public/に出力したファイルを見たい場合は、publicファルダまで移動して`npm run public`でローカルサーバーを立ち上げます。`http://localhost:9000/`にアクセスすると表示されます。
-
-## ページを追加する方法
-
-### CSS
-
-`src/scss/`に`${page_name}.scss`を追加します。  
-`@import "base";`の設定は必須です。  
-
-※ページ専用のCSSファイルがない場合は不要です。
-
-### JavaScript
-
-`src/js/`に`${page_name}.js`を追加します。  
-
-※ページ専用のJSファイルがない場合は不要です。
-
-### HTML
-
-`src/pug/page/`に`${page_name}.pug`を追加します。  
-`index.pug`をコピペして適宜変更すると良いです。  
-
-たとえばCSS/JSファイルを追加した場合は、以下のように読み込みます。
-
-```pug
-append stylesheet-block
-  link(rel="stylesheet", href="./css/about.css")
-
-append javascript-block
-  script(src="./js/about.js")
+# generate static project
+$ yarn generate
 ```
 
-### webpackの設定
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
-`webpack.config.js`から、エントリーポイントを追加します。
+## yarn update
 
-```javascript
-entry: {
-  'js/script.js': `${SRC}/js/script.js`,
-  'js/about.js': `${SRC}/js/about.js`, // 追加例
-  'css/style.css': `${SRC}/scss/style.scss`,
-  'css/about.css': `${SRC}/scss/about.scss`, // 追加例
-}
-```
+https://gist.github.com/mo49/ebc304651ab43c93eb357bc2becb85ca
 
-`webpack.config.js`から、コンパイル元のファイルと出力ファイル名を追加します。
-
-```javascript
-plugins: [
-  new HTMLWebpackPlugin({
-    templateParameters: htmlTemplates,
-    template: `${SRC}/pug/page/index.pug`,
-    filename: 'index.html',
-    inject: false,
-  }),
-  // 追加例
-  new HTMLWebpackPlugin({
-    templateParameters: htmlTemplates,
-    template: `${SRC}/pug/page/about.pug`, // コンパイル元のファイル
-    filename: 'about.html', // 出力ファイル名
-    inject: false,
-  }),
-],
-```
-
-## 多重階層のサイトを作る場合
-
-サイトのルートディレクトリではなく、サブディレクトリに配置するサイトを作成する場合は、ファイルのパス設定を変更する必要があります。  
-たとえば`http://example.com/sub/`というサイト構成ならば、`src/constants.yml`を以下のように変更します。
-
-```yml
-SUB_DIR: sub
-```
-
-さらにpublic直下にsubフォルダを作成し、imgフォルダをsubフォルダ内に移動させます。
+Nuxt2.8の致命的エラーがあるので改修するまでは2.7が最新
+https://gist.github.com/mo49/876e18eb3382e2b628af3f8307e183c1
 
 
-## 使用言語
+## References
 
-- HTMLテンプレート：[pug](https://pugjs.org/api/getting-started.html)
-- CSSメタ言語：[Sass(SCSS)](http://sass-lang.com/)
-- JavaScript：[ES2015](https://babeljs.io/docs/en/learn)
+https://gist.github.com/mo49/e26b492c67432bb8dd082caec92fd1e1
 
-## 依存ライブラリ
+https://github.com/browserslist/browserslist
+https://github.com/fukuiretu/nuxt-user-agent
+https://www.npmjs.com/package/vue-scrollto
 
-- [Babel](https://babeljs.io/)
-- [webpack](https://webpack.js.org/)
-- [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
-- [PostCSS](https://postcss.org/)
-
-## 参考リポジトリ
-
-- https://github.com/google/web-starter-kit
-- https://github.com/Microsoft/TypeScript-Vue-Starter
-- https://github.com/kayac/kayac-html5-starter
-- https://github.com/nyawach/vue-ts-hmr-starter

@@ -1,0 +1,10 @@
+@mixin image($w, $h, $scale:1){
+  $width: floor($w * $scale);
+  $height: floor($h * $scale);
+  width: $width + px;
+  height: $height + px;
+  background-size: $width + px $height + px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  @include hide-text();
+}

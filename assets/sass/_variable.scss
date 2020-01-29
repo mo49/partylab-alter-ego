@@ -1,0 +1,70 @@
+// ======================================
+// media query
+// ======================================
+
+$section_inner_width: 960px;
+$pc_min_width: 768px; // breakpoint
+$sp_s_width: 375px;
+
+// ======================================
+// color
+// ======================================
+
+// main
+$main-color: #ff0c76 !default;
+// accent
+$accent-color: #12bfd2 !default;
+// background
+$bg-color-main: #fff !default;
+$bg-color-sub: #212120 !default;
+$bg-color-modal: #EEEEEF !default;
+$bg-color-lightgray: #F8F8FA !default;
+// font
+$font-color-main: $main-color !default;
+$font-color-base: #212120 !default;
+$font-color-sub: #181818 !default;
+$font-color-desc:#C1C1C1 !default;
+$font-color-light: #fff !default;
+// links
+$link-color: #678cf5 !default;
+$link-color-hover: $link-color !default;
+$link-color-visited: #c167f5 !default;
+$link-color-active: null !default;
+// border
+$border-color: #666 !default;
+// ui
+$ui-color-negative: #EE5350 !default;
+$ui-color-success: #66BB6A !default;
+$ui-color-warning: #FFCA28 !default;
+$ui-color-dark: #335466 !default;
+
+// ======================================
+// z-index
+// ======================================
+
+$z:
+wrapper,
+footer,
+header,
+button,
+gnav,
+modal,
+loading;
+/*
+  usage
+  z-index: index($z, header);
+*/
+
+// ======================================
+// font
+// ======================================
+
+$font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$sans-serif: YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", sans-serif;
+$serif: YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+
+$base-font-size--pc: 16px;
+$base-font-size--sp: 14px;
+
+$base-line-height--pc: 24px;
+$base-line-height--sp: 20px;
