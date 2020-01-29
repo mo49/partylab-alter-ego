@@ -5,14 +5,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 // Paths
-const entry = './src/js/app.js';
-const includePath = path.join(__dirname, 'src/js');
+const SRC = './src';
+const DEST = './src/public';
+const includePath = path.join(__dirname, SRC);
+let outputPath = path.join(__dirname, DEST);
 const nodeModulesPath = path.join(__dirname, 'node_modules');
 
-let outputPath = path.join(__dirname, 'src/public/js');
+// let outputPath = path.join(__dirname, 'src/public/js');
 
 module.exports = env => {
   // Dev environment
@@ -42,9 +43,10 @@ module.exports = env => {
   return {
     // Here the application starts executing
     // and webpack starts bundling
-    entry: [
-      entry
-    ],
+    entry: {
+      'js/app.js': `${SRC}/js/app.js`,
+      'css/app.css': `${SRC}/css/app.scss`
+    },
 
     // options related to how webpack emits results
     output: {
@@ -52,9 +54,9 @@ module.exports = env => {
       // must be an absolute path (use the Node.js path module)
       path: outputPath,
       // the url to the output directory resolved relative to the HTML page
-      publicPath: 'js',
+      publicPath: '',
       // the filename template for entry chunks
-      filename: 'app.js'
+      filename: '[name]'
     },
 
     // Webpack 4 mode helper
@@ -65,21 +67,11 @@ module.exports = env => {
       // rules for modules (configure loaders, parser options, etc.)
       rules: [
         {
-          // these are matching conditions, each accepting a regular expression or string
-          // test and include have the same behavior, both must be matched
-          // exclude must not be matched (takes preference over test and include)
-          // Best practices:
-          // - Use RegExp only in test and for filename matching
-          // - Use arrays of absolute paths in include and exclude
-          // - Try to avoid exclude and prefer include
           test: /\.js?$/,
-          // the loader which should be applied, it'll be resolved relative to the context
-          // -loader suffix is no longer optional in webpack2 for clarity reasons
-          // see webpack 1 upgrade guide
           use: {
             loader: 'babel-loader',
           },
-          include: includePath,
+          include: `${includePath}/js`,
           exclude: nodeModulesPath,
         },
         {
@@ -98,13 +90,15 @@ module.exports = env => {
               options: {
                 // you can specify a publicPath here
                 // by default it use publicPath in webpackOptions.output
-                publicPath: 'css'
+                publicPath: `${DEST}/css`
               }
             },
             'css-loader',
             'postcss-loader',
             'sass-loader',
           ],
+          include: `${includePath}/css`,
+          exclude: nodeModulesPath,
         }
       ]
     },
@@ -148,7 +142,6 @@ module.exports = env => {
         filename: '../css/[name].css',
         chunkFilename: '../css/[id].css'
       }),
-      new LodashModuleReplacementPlugin,
     ),
 
     optimization: {
