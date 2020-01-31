@@ -26,7 +26,7 @@ export default class FaceDeformationGUI {
 
     this.count = 0
 
-    this.emotion = "default"
+    this.emotion = ""
     this.presets = {
       "default" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       "angry" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -218,7 +218,6 @@ export default class FaceDeformationGUI {
     if(this.emotion === this.reverseEmotion(emotion)) return
     this.emotion = this.reverseEmotion(emotion)
     this.reverseEmotionBg.textContent = this.emotion
-    // console.log('反対の感情', this.emotion)
     this.ph.presets = this.presets[this.emotion].join()
     this.switchDeformedFace()
   }
@@ -233,6 +232,7 @@ export default class FaceDeformationGUI {
       case 'angry': emo = 'calm'; break;
       case 'disgusted': emo = 'calm'; break;
       case 'fear': emo = 'calm'; break;
+      default: emo = 'default'
     }
     return emo
   }

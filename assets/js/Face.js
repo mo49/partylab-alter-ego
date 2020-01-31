@@ -160,6 +160,8 @@ export default class Face {
 
   startAnimation() {
     this.canAnimate = true
+    this.animationButton.setAttribute('class', 'hide')
+    this.resetButton.setAttribute('class', 'hide')
   }
 
   drawLoop() {
@@ -186,17 +188,22 @@ export default class Face {
     }
     const maxEmo = _.maxBy(this.ers, er => er.value)
     if(maxEmo && this.faceDeformationGUI){
-      if(maxEmo.value > 0.5){
-        this.faceDeformationGUI.changeEmotion(maxEmo.emotion)
-        this.currentEmotion.textContent = `emotion: ${maxEmo.emotion}`
-      } else {
-        this.faceDeformationGUI.changeEmotion('calm')
-        this.currentEmotion.textContent = `emotion: calm`
+      if(this.canAnimate){
+        if(maxEmo.value > 0.4){
+          this.faceDeformationGUI.changeEmotion(maxEmo.emotion)
+          this.currentEmotion.textContent = `emotion: ${maxEmo.emotion}`
+        } else {
+          this.faceDeformationGUI.changeEmotion('calm')
+          this.currentEmotion.textContent = `emotion: calm`
+        }
+      }else{
+        this.faceDeformationGUI.changeEmotion('default')
+        this.currentEmotion.textContent = `emotion: default`
       }
     }
 
     let pn = this.ctrack.getConvergence();
-    if (pn < 0.4) {
+    if (pn < 0.5) {
       if(!this.isSetup){
         this.faceDeformationGUI = new FaceDeformationGUI({
           ctrack: this.ctrack,
