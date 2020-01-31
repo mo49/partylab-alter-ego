@@ -12,6 +12,13 @@
   width : 370px;
   /*margin : 0px auto;*/
   margin: 100px auto 0;
+  .wrapper[data-is-start] & {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: scale(0.5);
+    transform-origin: left bottom;
+  }
 }
 #videoel {
   -o-transform : scaleX(-1);

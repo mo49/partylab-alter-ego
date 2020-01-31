@@ -58,6 +58,6 @@ export default {
 
 <style lang="scss">
 .inner{
-  position: relative;
+  // position: relative;
 }
 </style>

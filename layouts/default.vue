@@ -73,6 +73,9 @@ body{
 .wrapper{
   animation: cloak-in 1s;
   overflow: hidden; // IEで右側に余白が生まれる対策
+  background-color: #000;
+  min-width: 100vw;
+  min-height: 100vh;
   &[v-cloak]{
     opacity: 0;
   }
@@ -105,5 +108,9 @@ body{
 
 .nogum {
   display : none;
+}
+
+.dg{
+  display: none;
 }
 </style>

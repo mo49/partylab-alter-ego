@@ -10,8 +10,8 @@
   line-height: 100vh;
   top: 0;
   left: 0;
-  color: #0f0;
-  opacity: 0.5;
+  color: orange;
+  opacity: 0.8;
   text-align: center;
   transform: rotate(15deg);
   transform-origin: center;

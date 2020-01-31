@@ -26,11 +26,18 @@ export default {
 }
 input {
   font-family: 'Lato';
-  font-size: 2rem;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  margin-bottom: 10px;
+  margin: 0 auto 30px;
+  font-size: 3rem;
+  border-radius: 10px;
+  padding: 5px 30px;
+}
+#animationButton{
+}
+#resetButton{
+  font-size: 2rem;
 }
 </style>
 

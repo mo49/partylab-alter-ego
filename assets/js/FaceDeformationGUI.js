@@ -3,6 +3,7 @@ export default class FaceDeformationGUI {
     this.ctrack = opts.ctrack || new clm.tracker()
     this.fd = opts.fd || new faceDeformer()
 
+    this.wrapper = document.getElementsByClassName("wrapper")[0]
     this.vid = document.getElementById("videoel")
     this.vid_width = this.vid.width
     this.vid_height = this.vid.height
@@ -51,13 +52,15 @@ export default class FaceDeformationGUI {
     this.fd.load(this.vid, this.positions, pModel);
     this.fd.draw(this.positions);
 
+    this.wrapper.setAttribute('data-is-start', true)
+
     // show button
     this.animationButton.setAttribute("class", "nohide")
     this.resetButton.setAttribute("class", "nohide")
 
     // hide video
     var elem = document.getElementById("video-container");
-    elem.setAttribute("class", "hide");
+    // elem.setAttribute("class", "hide");
 
     // show facial deformation element
     elem = document.getElementById("webgl-container");
