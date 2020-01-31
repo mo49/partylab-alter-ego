@@ -190,13 +190,13 @@ export default class Face {
         this.faceDeformationGUI.changeEmotion(maxEmo.emotion)
         this.currentEmotion.textContent = `emotion: ${maxEmo.emotion}`
       } else {
-        this.faceDeformationGUI.changeEmotion('default')
-        this.currentEmotion.textContent = `emotion: default`
+        this.faceDeformationGUI.changeEmotion('calm')
+        this.currentEmotion.textContent = `emotion: calm`
       }
     }
 
     let pn = this.ctrack.getConvergence();
-    if (pn < 0.5) {
+    if (pn < 0.4) {
       if(!this.isSetup){
         this.faceDeformationGUI = new FaceDeformationGUI({
           ctrack: this.ctrack,

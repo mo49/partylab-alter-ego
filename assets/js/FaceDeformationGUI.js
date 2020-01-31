@@ -35,7 +35,7 @@ export default class FaceDeformationGUI {
       "sad" : [0, 0, 0, 0, 0, 0, 0, 0, 20, -20, -5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       "surprised" : [0, 0, -20, 5, 0, 0, 0, 0, -5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, -5],
       "happy" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      "calm" : [0, 0, 0, 0, 0, 0, 0, 0, 0, -10, -10, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "calm" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     }
 
     this.setupFaceDeformation = this.setupFaceDeformation.bind(this)
@@ -226,8 +226,8 @@ export default class FaceDeformationGUI {
   reverseEmotion(emotion) {
     let emo
     switch (emotion) {
-      case 'default': emo = 'surprised'; break;
-      case 'surprised': emo = 'default'; break;
+      case 'calm': emo = 'surprised'; break;
+      case 'surprised': emo = 'calm'; break;
       case 'happy': emo = 'sad'; break;
       case 'sad': emo = 'happy'; break;
       case 'angry': emo = 'calm'; break;
