@@ -20,6 +20,7 @@
       <score />
       <gUMMessage />
       <emotion />
+      <lefttime />
     </div>
   </div>
 </template>
@@ -28,6 +29,7 @@
 import gUMMessage from '~/components/atoms/gUMMessage'
 import Score from '~/components/atoms/Score'
 import ReverseEmotion from '~/components/atoms/ReverseEmotion'
+import Lefttime from '~/components/atoms/Lefttime'
 import Buttons from '~/components/molecules/Buttons'
 import Emotion from '~/components/molecules/Emotion'
 import VideoContainer from '~/components/molecules/VideoContainer'
@@ -40,6 +42,7 @@ export default {
     gUMMessage,
     Score,
     ReverseEmotion,
+    Lefttime,
     Buttons,
     Emotion,
     VideoContainer,

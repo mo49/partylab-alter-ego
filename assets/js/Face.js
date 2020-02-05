@@ -77,6 +77,7 @@ export default class Face {
   enablestart() {
     this.trackingButton.value = "Tracking";
     this.trackingButton.disabled = null;
+    this.trackingButton.click()
   }
 
   insertAltVideo(video) {
@@ -162,6 +163,10 @@ export default class Face {
     this.canAnimate = true
     this.animationButton.setAttribute('class', 'hide')
     this.resetButton.setAttribute('class', 'hide')
+    this.faceDeformationGUI.stopTimer()
+    this.faceDeformationGUI.startTimer(60).then(() => {
+      location.reload()
+    })
   }
 
   drawLoop() {

@@ -14,6 +14,7 @@ export default class FaceDeformationGUI {
 
     this.animationButton = document.getElementById("animationButton")
     this.resetButton = document.getElementById("resetButton")
+    this.leftTime = document.getElementById("lefttime")
 
     this.ph = new this.parameterHolder()
     this.gui = new dat.GUI()
@@ -67,6 +68,12 @@ export default class FaceDeformationGUI {
     elem.setAttribute("class", "nohide");
     // hide message element
     document.getElementById("score").setAttribute("class", "hide");
+
+    // timer
+    this.stopTimer()
+    this.startTimer(30).then(() => {
+      this.animationButton.click()
+    })
 
     // set up controls
     // ph = new parameterHolder();
@@ -255,6 +262,22 @@ export default class FaceDeformationGUI {
     this.drawDeformedFace()
 
     this.count++
+  }
+
+  startTimer(_time) {
+    return new Promise(resolve => {
+      let count = _time
+      this.timer = setInterval(() => {
+        this.leftTime.textContent = count
+        count--
+        if(count <= 0) resolve()
+      }, 1000);
+    })
+  }
+
+  stopTimer() {
+    clearInterval(this.timer)
+    this.leftTime.textContent = ''
   }
 
 }
