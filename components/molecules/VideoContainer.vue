@@ -1,17 +1,21 @@
 <template>
   <div id="video-container" class="nohide">
-    <video id="videoel" width="370" height="288" preload="auto" playsinline autoplay></video>
-    <canvas id="canvasel" width="370" height="288" class="hide"></canvas>
-    <canvas id="overlay" width="370" height="288"></canvas>
+    <video id="videoel" width="600" height="400" preload="auto" playsinline autoplay></video>
+    <canvas id="canvasel" width="600" height="400" class="hide"></canvas>
+    <canvas id="overlay" width="600" height="400"></canvas>
   </div>
 </template>
 
 <style lang="scss" scoped>
 #video-container {
   position : relative;
-  width : 370px;
+  width : 600px;
   /*margin : 0px auto;*/
-  margin: 100px auto 0;
+  // margin: 100px auto 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   .wrapper[data-is-start] & {
     position: absolute;
     left: 0;

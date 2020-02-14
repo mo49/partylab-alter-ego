@@ -7,6 +7,6 @@
   color: #fff;
   font-size: 1.5rem;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 60px;
 }
 </style>
