@@ -71,7 +71,7 @@ export default class FaceDeformationGUI {
 
     // timer
     this.stopTimer()
-    this.startTimer(30).then(() => {
+    this.startTimer(10).then(() => {
       this.animationButton.click()
     })
 
