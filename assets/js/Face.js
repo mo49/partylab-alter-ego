@@ -208,7 +208,7 @@ export default class Face {
     }
 
     let pn = this.ctrack.getConvergence();
-    if (pn < 0.5) {
+    if (pn < 1) {
       if(!this.isSetup){
         this.faceDeformationGUI = new FaceDeformationGUI({
           ctrack: this.ctrack,
