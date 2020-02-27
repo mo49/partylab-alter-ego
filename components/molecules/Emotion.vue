@@ -21,7 +21,7 @@
   }
   @include sp-layout{
     font-size: 14px;
-    bottom: 20px;
+    bottom: 35px;
     left: 15px;
   }
 }

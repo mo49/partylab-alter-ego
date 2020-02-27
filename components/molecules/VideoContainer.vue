@@ -17,9 +17,11 @@
   }
   @include sp-layout{
     width : 100%;
+    max-height: 300px;
     video, canvas{
       width: 100%;
       height: auto;
+      max-height: 300px;
     }
   }
   .wrapper[data-is-start] & {

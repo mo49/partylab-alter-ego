@@ -55,6 +55,8 @@ input {
   @include sp-layout{
     font-size: 28px;
     font-weight: normal;
+    color: #000;
+    background-color: #fff;
   }
 }
 </style>
