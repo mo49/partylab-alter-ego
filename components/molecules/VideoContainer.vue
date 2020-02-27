@@ -9,13 +9,14 @@
 <style lang="scss" scoped>
 #video-container {
   position: absolute;
-  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   @include pc-layout{
+    top: 50%;
     width : 600px;
   }
   @include sp-layout{
+    top: 40%;
     width : 100%;
     max-height: 400px;
     video, canvas{
@@ -35,7 +36,7 @@
     @include sp-layout{
       transform-origin: right bottom;
       left: 0;
-      bottom: 50px;
+      bottom: 120px;
     }
   }
 }
