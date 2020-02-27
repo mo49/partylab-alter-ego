@@ -7,5 +7,6 @@ small{
   margin: 0 auto;
   display: block;
   text-align: center;
+  opacity: 0;
 }
 </style>

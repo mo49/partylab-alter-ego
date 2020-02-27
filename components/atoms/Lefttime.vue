@@ -9,5 +9,8 @@
   font-size: 4rem;
   right: 20px;
   top: 30px;
+  @include sp-layout{
+    font-size: 28px;
+  }
 }
 </style>

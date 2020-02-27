@@ -16,5 +16,8 @@
   transform: rotate(15deg);
   transform-origin: center;
   font-size: 15rem;
+  @include sp-layout{
+    font-size: 80px;
+  }
 }
 </style>

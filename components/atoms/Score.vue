@@ -7,6 +7,18 @@
   color: #fff;
   font-size: 1.5rem;
   text-align: center;
-  margin-top: 60px;
+  @include pc-layout{
+    margin-top: 60px;
+  }
+  @include sp-layout{
+    margin-top: 50px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    font-weight: bold;
+    text-shadow: 3px 3px 5px #333;
+  }
 }
 </style>
