@@ -17,22 +17,23 @@
   }
   @include sp-layout{
     width : 100%;
-    max-height: 300px;
+    max-height: 400px;
     video, canvas{
       width: 100%;
       height: auto;
-      max-height: 300px;
+      max-height: 400px;
     }
   }
   .wrapper[data-is-start] & {
     position: absolute;
     transform: scale(0.5);
-    transform-origin: left bottom;
     bottom: 0;
     @include pc-layout{
+      transform-origin: left bottom;
       left: 0;
     }
     @include sp-layout{
+      transform-origin: right bottom;
       right: 0;
     }
   }

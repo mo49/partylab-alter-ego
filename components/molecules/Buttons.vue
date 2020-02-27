@@ -42,6 +42,14 @@ input {
     margin: 0 10px;
   }
 }
+#trackingButton{
+  @include sp-layout{
+    font-size: 28px;
+    font-weight: normal;
+    color: #000;
+    background-color: #fff;
+  }
+}
 #animationButton{
   @include sp-layout{
     font-size: 28px;
