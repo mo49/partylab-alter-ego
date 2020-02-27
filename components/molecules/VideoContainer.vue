@@ -27,14 +27,15 @@
   .wrapper[data-is-start] & {
     position: absolute;
     transform: scale(0.5);
-    bottom: 0;
     @include pc-layout{
       transform-origin: left bottom;
       left: 0;
+      bottom: 0;
     }
     @include sp-layout{
       transform-origin: right bottom;
       left: 0;
+      bottom: 50px;
     }
   }
 }
