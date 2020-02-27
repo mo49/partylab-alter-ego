@@ -11,7 +11,8 @@
     margin-top: 60px;
   }
   @include sp-layout{
-    margin-top: 50px;
+    font-size: 28px;
+    opacity: 0.8;
     position: absolute;
     left: 50%;
     top: 50%;
