@@ -36,7 +36,7 @@
     @include sp-layout{
       transform-origin: right bottom;
       left: 0;
-      bottom: 120px;
+      bottom: 140px;
     }
   }
 }
