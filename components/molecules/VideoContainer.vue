@@ -34,7 +34,7 @@
     }
     @include sp-layout{
       transform-origin: right bottom;
-      right: 0;
+      left: 0;
     }
   }
 }
