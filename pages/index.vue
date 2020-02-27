@@ -22,10 +22,12 @@
       <emotion />
       <lefttime />
     </div>
+    <qr />
   </div>
 </template>
 
 <script>
+import Qr from '~/components/atoms/Qr'
 import gUMMessage from '~/components/atoms/gUMMessage'
 import Score from '~/components/atoms/Score'
 import ReverseEmotion from '~/components/atoms/ReverseEmotion'
@@ -39,6 +41,7 @@ import Face from '~/assets/js/Face'
 
 export default {
   components: {
+    Qr,
     gUMMessage,
     Score,
     ReverseEmotion,
