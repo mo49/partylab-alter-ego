@@ -6,5 +6,5 @@
   background-size: $width + px $height + px;
   background-repeat: no-repeat;
   background-position: center center;
-  @include hide-text();
+  // @include hide-text();
 }
